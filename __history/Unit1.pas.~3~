@@ -1,0 +1,53 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, StrUtils;
+
+type
+  TForm1 = class(TForm)
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    edtResultado: TEdit;
+    btnTeste: TButton;
+    edtTermo2: TEdit;
+    edtTermo1: TEdit;
+    lblValor1: TLabel;
+    lblValor2: TLabel;
+    lblExplicacao: TLabel;
+    procedure btnTesteClick(Sender: TObject);
+  private
+    { Private declarations }
+    function Falso : string;
+    function Verdadeiro : string;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnTesteClick(Sender: TObject);
+begin
+  edtResultado.Text := ifthen(StrToIntDef(edtTermo1.Text, 0) > StrToIntDef(edtTermo2.Text, 0), Verdadeiro, Falso);
+end;
+
+function TForm1.Falso: string;
+begin
+  ShowMessage('Passou pelo Verdadeiro');
+  Result := 'False: Edit 2 é o maior';
+end;
+
+function TForm1.Verdadeiro: string;
+begin
+  ShowMessage('Passou pelo Falso');
+  Result := 'Verdadeiro: Edit 1 é o maior';
+end;
+
+end.
